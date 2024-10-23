@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jakone_pay/app/config/theme/app_colors.dart';
 
 class AppThemeData {
   static const _lightFillColor = Colors.black;
@@ -25,7 +26,7 @@ class AppThemeData {
       ),
       iconTheme: IconThemeData(color: colorScheme.onPrimary),
       canvasColor: colorScheme.surface,
-      scaffoldBackgroundColor: colorScheme.surface,
+      scaffoldBackgroundColor: AppColors.neutral,
       highlightColor: Colors.transparent,
       focusColor: focusColor,
       snackBarTheme: SnackBarThemeData(

@@ -22,6 +22,8 @@ class SecondaryButton extends StatelessWidget {
     this.isLoading = false,
     this.leftWidget,
     this.rightWidget,
+    this.borderRadius,
+    this.gradient,
   }) : super(key: key);
 
   final String label;
@@ -35,6 +37,8 @@ class SecondaryButton extends StatelessWidget {
   final bool isLoading;
   final Widget? leftWidget;
   final Widget? rightWidget;
+  final double? borderRadius;
+  final Gradient? gradient;
 
   EdgeInsetsGeometry _getPadding() {
     switch (buttonSize) {
@@ -84,17 +88,6 @@ class SecondaryButton extends StatelessWidget {
     }
   }
 
-  _getBorderColor() {
-    switch (variant) {
-      case SecondaryButtonVariant.regular:
-        return AppColors.primaryColor;
-      case SecondaryButtonVariant.grey:
-        return AppColors.neutral200;
-      case SecondaryButtonVariant.striped:
-        return AppColors.primaryColor;
-    }
-  }
-
   _getTextType() {
     switch (fontSize) {
       case SecondaryButtonFontSize.small:
@@ -129,16 +122,14 @@ class SecondaryButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ButtonStyle(
-        elevation: MaterialStateProperty.all<double>(0),
-        shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
-        overlayColor: MaterialStateProperty.all<Color>(_getRippleColor()),
-        backgroundColor:
-            MaterialStateProperty.all<Color>(_getBackgroundColor()),
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(_getPadding()),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        elevation: WidgetStateProperty.all<double>(0),
+        shadowColor: WidgetStateProperty.all<Color>(Colors.transparent),
+        overlayColor: WidgetStateProperty.all<Color>(_getRippleColor()),
+        backgroundColor: WidgetStateProperty.all<Color>(_getBackgroundColor()),
+        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(_getPadding()),
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-            side: BorderSide(color: _getBorderColor(), width: 1),
+            borderRadius: BorderRadius.circular(borderRadius ?? 4),
           ),
         ),
       ),
@@ -165,8 +156,18 @@ class SecondaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+        decoration: BoxDecoration(
+          gradient: gradient ?? AppColors.primaryGradient,
+          borderRadius: BorderRadius.circular(borderRadius ?? 4),
+        ),
         width: isExpanded ? double.infinity : null,
-        child: _buildRegularVariant());
+        child: Container(
+          margin: const EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius ?? 4),
+          ),
+          child: _buildRegularVariant(),
+        ));
   }
 }

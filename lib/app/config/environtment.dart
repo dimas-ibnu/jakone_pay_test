@@ -3,7 +3,7 @@
 class Environments {
   static const String PRODUCTION = '#';
   static const String STAGING = '#';
-}
+} 
 
 class ConfigEnvironments {
   static String _currentEnvironments = Environments.STAGING;

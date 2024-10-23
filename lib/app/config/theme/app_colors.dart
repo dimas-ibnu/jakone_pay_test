@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // PRIMARY
-  static const Color primaryColor = Color(0xFFFE5F5F); 
+  static const Color primaryColor = Color(0xFFFE5F5F);
   static const Color primarySurfaceColor = Color(0xFFFFFFFF);
   static const Color primaryBorderColor = Color(0xFFD3AA8E);
   static const Color primaryHoverColor = Color(0xFF512019);
@@ -18,6 +18,7 @@ class AppColors {
   // WARNING COLOR
   static const Color warningColor = Color(0xFFF2C94C);
   static const Color mainWarningColor = Color(0xFFF2C94C);
+  static const Color yellowGrid = Color(0xFFFFF84B);
 
   /// ERROR COLOR
   static const Color errorColor = Color(0xFFCC1F1B);
@@ -28,6 +29,8 @@ class AppColors {
 
   // SECONDARY COLOR
   static const Color accentColor = Color(0xFFD9EDE1);
+  static const Color secondaryColor = Color(0xFFFC9842);
+  static const Color secondarySurfaceColor = Color(0xFFFFDBA5);
 
   //APPBAR
   static const Color appBarColor = primaryColor;
@@ -70,15 +73,23 @@ class AppColors {
   static const Gradient primaryGradient = LinearGradient(
     begin: Alignment.bottomCenter,
     end: Alignment.topCenter,
-    colors: [Color(0xFFFF4747), Color(0xFFFC9842)],
+    colors: [primaryColor, secondaryColor],
   );
 
+  static const Gradient primaryGradientReversed = LinearGradient(
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+    colors: [
+      secondaryColor,
+      primaryColor,
+    ],
+  );
 
   static const List<BoxShadow> boxShadow = [
     BoxShadow(
       color: Color(0x19000000),
-      blurRadius: 20,
-      offset: Offset(0, -4),
+      blurRadius: 4,
+      offset: Offset(0, 4),
       spreadRadius: 0,
     )
   ];

@@ -22,6 +22,8 @@ class PrimaryButton extends StatelessWidget {
     this.leftWidget,
     this.rightWidget,
     this.useExtraRightWidgetSpace = true,
+    this.borderRadius,
+    this.gradient,
   }) : super(key: key);
 
   final String label;
@@ -35,6 +37,8 @@ class PrimaryButton extends StatelessWidget {
   final Widget? leftWidget;
   final Widget? rightWidget;
   final bool useExtraRightWidgetSpace;
+  final double? borderRadius;
+  final Gradient? gradient;
 
   EdgeInsetsGeometry _getPadding() {
     switch (buttonSize) {
@@ -49,25 +53,12 @@ class PrimaryButton extends StatelessWidget {
     }
   }
 
-  _getBackgroundColor() {
-    switch (variant) {
-      case PrimaryButtonVariant.regular:
-        return onPressed == null
-            ? AppColors.neutral300
-            : AppColors.primaryColor;
-      case PrimaryButtonVariant.neutralGrey:
-        return AppColors.neutral;
-      case PrimaryButtonVariant.grey:
-        return AppColors.neutral50;
-    }
-  }
-
   _getRippleColor() {
     switch (variant) {
       case PrimaryButtonVariant.regular:
         return onPressed == null
-            ? AppColors.primarySurfaceColor
-            : AppColors.primaryBorderColor;
+            ? AppColors.neutral
+            : AppColors.primaryColor;
       case PrimaryButtonVariant.neutralGrey:
       case PrimaryButtonVariant.grey:
         return AppColors.neutral;
@@ -111,20 +102,27 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: AppColors.yellowGrid,
+          width: 2,
+        ),
+        gradient: gradient ?? AppColors.primaryGradientReversed,
+        borderRadius: BorderRadius.circular(borderRadius ?? 4),
+      ),
       width: isExpanded ? double.infinity : null,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ButtonStyle(
-          elevation: MaterialStateProperty.all<double>(0),
-          shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
-          overlayColor: MaterialStateProperty.all<Color>(_getRippleColor()),
-          backgroundColor:
-              MaterialStateProperty.all<Color>(_getBackgroundColor()),
-          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(_getPadding()),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          elevation: WidgetStateProperty.all<double>(0),
+          shadowColor: WidgetStateProperty.all<Color>(Colors.transparent),
+          overlayColor: WidgetStateProperty.all<Color>(_getRippleColor()),
+          backgroundColor: WidgetStateProperty.all<Color>(Colors.transparent),
+          padding: WidgetStateProperty.all<EdgeInsetsGeometry>(_getPadding()),
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(borderRadius ?? 4),
             ),
           ),
         ),
