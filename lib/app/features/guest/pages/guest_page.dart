@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jakone_pay/app/features/guest/cubit/guest_cubit.dart';
 import 'package:jakone_pay/app/features/guest/widgets/guest_image_slider.dart';
 import 'package:jakone_pay/app/features/guest/widgets/guest_jakcard_button.dart';
 import 'package:jakone_pay/app/features/guest/widgets/guest_translation_button.dart';
@@ -18,7 +20,7 @@ class _GuestPageState extends State<GuestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FabButton(),
+      floatingActionButton: const FabButton(),
       body: SafeArea(
           child: Column(
         children: [
@@ -47,7 +49,7 @@ class _GuestPageState extends State<GuestPage> {
                   fontWeight: DefaultTextWeight.semiBold,
                   isExpanded: true,
                   onPressed: () {
-                    print('Continue as Guest');
+                     context.read<GuestCubit>().routeToHome();
                   },
                   borderRadius: 100,
                   label: 'Continue as Guest',
@@ -58,7 +60,7 @@ class _GuestPageState extends State<GuestPage> {
                   fontWeight: DefaultTextWeight.semiBold,
                   isExpanded: true,
                   onPressed: () {
-                    print('Continue as Guest');
+                    context.read<GuestCubit>().routeToHome();
                   },
                    borderRadius: 100,
                   label: 'Continue as Guest',

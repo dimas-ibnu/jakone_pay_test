@@ -6,7 +6,7 @@ enum PrimaryButtonVariant { regular, grey, neutralGrey }
 
 enum PrimaryButtonSize { extraSmall, small, regular, large }
 
-enum PrimaryButtonFontSize { small, regular, large }
+enum PrimaryButtonFontSize { extraSmall, small, regular, large }
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
@@ -24,6 +24,7 @@ class PrimaryButton extends StatelessWidget {
     this.useExtraRightWidgetSpace = true,
     this.borderRadius,
     this.gradient,
+    this.customPadding,
   }) : super(key: key);
 
   final String label;
@@ -39,11 +40,12 @@ class PrimaryButton extends StatelessWidget {
   final bool useExtraRightWidgetSpace;
   final double? borderRadius;
   final Gradient? gradient;
+  final EdgeInsetsGeometry? customPadding;
 
   EdgeInsetsGeometry _getPadding() {
     switch (buttonSize) {
       case PrimaryButtonSize.extraSmall:
-        return const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
+        return const EdgeInsets.symmetric(horizontal: 8, vertical: 0);
       case PrimaryButtonSize.small:
         return const EdgeInsets.symmetric(horizontal: 16, vertical: 10);
       case PrimaryButtonSize.regular:
@@ -56,9 +58,7 @@ class PrimaryButton extends StatelessWidget {
   _getRippleColor() {
     switch (variant) {
       case PrimaryButtonVariant.regular:
-        return onPressed == null
-            ? AppColors.neutral
-            : AppColors.primaryColor;
+        return onPressed == null ? AppColors.neutral : AppColors.primaryColor;
       case PrimaryButtonVariant.neutralGrey:
       case PrimaryButtonVariant.grey:
         return AppColors.neutral;
@@ -82,6 +82,8 @@ class PrimaryButton extends StatelessWidget {
 
   _getTextType() {
     switch (fontSize) {
+      case PrimaryButtonFontSize.extraSmall:
+        return DefaultTextType.text3XS;
       case PrimaryButtonFontSize.small:
         return DefaultTextType.textSM;
       case PrimaryButtonFontSize.regular:
@@ -113,13 +115,17 @@ class PrimaryButton extends StatelessWidget {
       ),
       width: isExpanded ? double.infinity : null,
       child: ElevatedButton(
+        
         onPressed: isLoading ? null : onPressed,
         style: ButtonStyle(
+          tapTargetSize: customPadding != null ? MaterialTapTargetSize.shrinkWrap : MaterialTapTargetSize.padded,
+          minimumSize: WidgetStateProperty.all<Size>(const Size(0, 0)),
           elevation: WidgetStateProperty.all<double>(0),
           shadowColor: WidgetStateProperty.all<Color>(Colors.transparent),
           overlayColor: WidgetStateProperty.all<Color>(_getRippleColor()),
           backgroundColor: WidgetStateProperty.all<Color>(Colors.transparent),
-          padding: WidgetStateProperty.all<EdgeInsetsGeometry>(_getPadding()),
+          padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+              customPadding ?? _getPadding()),
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius ?? 4),

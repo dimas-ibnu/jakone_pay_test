@@ -84,12 +84,49 @@ class AppColors {
       primaryColor,
     ],
   );
+  static const Gradient primaryGradientWhite = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xFFFE5F5F),
+      Color(0xFFFC9842),
+      neutral,
+      neutral,
+    ],
+  );
+
+  static const Gradient widgetGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xFFFE5F5F),
+      Color(0xFFFFF84B),
+    ],
+  );
+
+  static const Gradient widgetGradientReversed = LinearGradient(
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+    colors: [
+      Color(0xFFFE5F5F),
+      Color(0xFFFFF84B),
+    ],
+  );
 
   static const List<BoxShadow> boxShadow = [
     BoxShadow(
       color: Color(0x19000000),
       blurRadius: 4,
       offset: Offset(0, 4),
+      spreadRadius: 0,
+    )
+  ];
+
+  static const List<BoxShadow> boxShadowTop = [
+    BoxShadow(
+      color: Color(0x19000000),
+      blurRadius: 16,
+      offset: Offset(0, -2),
       spreadRadius: 0,
     )
   ];

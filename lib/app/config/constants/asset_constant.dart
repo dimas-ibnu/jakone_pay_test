@@ -31,10 +31,12 @@ class ImageAssetConstant {
 
   // Icons
   static const String homeIcon = 'assets/icons/home_icon.svg';
-  static const String userIcon = 'assets/icons/user _icon.svg';
+  static const String userIcon = 'assets/icons/user_icon.svg';
 
-  static const String calendarWhiteIcon = 'assets/images/calendar_icon.png';
-  static const String landmarkWhiteIcon = 'assets/images/landmark_icon.png';
+  static const String userIconWhite = 'assets/icons/user_icon.png';
+
+  static const String calendarWhiteIcon = 'assets/icons/calendar_icon.png';
+  static const String landmarkWhiteIcon = 'assets/icons/landmark_icon.png';
 
   static const String menuEvent = 'assets/icons/menu_event.png';
   static const String menuMaps = 'assets/icons/menu_maps.png';
@@ -43,4 +45,5 @@ class ImageAssetConstant {
   
   static const String reportIcon = 'assets/icons/report_icon.png';
   static const String notificationIcon = 'assets/icons/notification_icon.png';
+  static const String qrisIcon = 'assets/icons/qris_icon.png';
 }

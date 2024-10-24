@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jakone_pay/app/config/constants/asset_constant.dart';
 import 'package:jakone_pay/app/config/theme/app_colors.dart';
 import 'package:jakone_pay/app/widgets/texts/default_text.dart';
 import 'package:jakone_pay/app/widgets/texts/gradient_text.dart';

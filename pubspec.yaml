@@ -6,9 +6,10 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.2.3 <4.0.0" 
+  sdk: ">=3.2.3 <4.0.0"
 dependencies:
   bloc: 8.1.4
+  carousel_slider: ^5.0.0
   cupertino_icons: 1.0.2
   flutter:
     sdk: flutter
@@ -28,5 +29,5 @@ dev_dependencies:
 flutter:
   assets:
     - assets/icons/
-    - assets/images/ 
+    - assets/images/
   uses-material-design: true
